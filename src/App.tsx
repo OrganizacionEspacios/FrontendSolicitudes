@@ -2,6 +2,7 @@ import { useMultisetpForm } from "./useMultistepFrom";
 import UserForm from "./UserForm";
 import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
+import CalendarComponent from "./CalendarComponent";
 
 type FormData = {
   requesterName: string;
@@ -42,6 +43,7 @@ function App() {
 
   const { steps, currentStepIndex, step, isFirstStep, back, next, isLastStep } =
     useMultisetpForm([
+      <CalendarComponent />,
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
     ]);
