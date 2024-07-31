@@ -43,9 +43,9 @@ function App() {
 
   const { steps, currentStepIndex, step, isFirstStep, back, next, isLastStep } =
     useMultisetpForm([
-      <CalendarComponent />,
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
+      <CalendarComponent />,
     ]);
 
   function onSubmit(e: FormEvent) {
