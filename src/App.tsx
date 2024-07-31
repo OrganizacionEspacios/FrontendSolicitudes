@@ -21,7 +21,6 @@ type FormData = {
     videobeam: boolean;
     microphone: boolean;
   };
-  customValue: string;
   startTime: string;
   endTime: string;
 };
@@ -38,7 +37,6 @@ const INITIAL_DATA: FormData = {
     videobeam: false,
     microphone: false,
   },
-  customValue: "John Doe",
   startTime: "10:00",
   endTime: "19:00",
 };

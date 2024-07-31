@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 type ScheduleData = {
-  customValue: any;
   startTime: string;
   endTime: string;
 };
@@ -17,36 +16,16 @@ type DateRange = {
   endDate: Date | undefined;
 };
 
-function ScheduleForm({
-  customValue,
-  startTime,
-  endTime,
-  updateFields,
-}: ScheduleFormProps) {
-  console.log("customValue", customValue);
-
+function ScheduleForm({ startTime, endTime, updateFields }: ScheduleFormProps) {
   const [dateRange, setDateRange] = useState<DateRange>({
     startDate: undefined,
     endDate: undefined,
   });
 
-  // const [startTime, setStartTime] = useState("10:00");
-  // const [endTime, setEndTime] = useState("18:00");
-
   const handleDateChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
     setDateRange({ startDate: start || undefined, endDate: end || undefined });
   };
-
-  // const handleStartTimeChange = (
-  //   event: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setStartTime(event.target.value);
-  // };
-
-  // const handleEndTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setEndTime(event.target.value);
-  // };
 
   return (
     <div className="ScheduleForm">
