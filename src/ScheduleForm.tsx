@@ -31,10 +31,6 @@ function ScheduleForm({
   const handleDateChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
 
-    // Print it here
-    console.log("Selected start date:", start);
-    console.log("Selected end date:", end);
-
     updateFields({
       dateRange: { startDate: start || undefined, endDate: end || undefined },
     });
