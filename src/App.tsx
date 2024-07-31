@@ -4,6 +4,11 @@ import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
 import CalendarComponent from "./ScheduleForm";
 
+// type DateRange = {
+//   startDate: Date | undefined;
+//   endDate: Date | undefined;
+// };
+
 type FormData = {
   requesterName: string;
   requesterID: string;
@@ -16,6 +21,9 @@ type FormData = {
     videobeam: boolean;
     microphone: boolean;
   };
+  customValue: string;
+  startTime: string;
+  endTime: string;
 };
 
 const INITIAL_DATA: FormData = {
@@ -30,6 +38,9 @@ const INITIAL_DATA: FormData = {
     videobeam: false,
     microphone: false,
   },
+  customValue: "John Doe",
+  startTime: "10:00",
+  endTime: "19:00",
 };
 
 function App() {
@@ -43,9 +54,9 @@ function App() {
 
   const { steps, currentStepIndex, step, isFirstStep, back, next, isLastStep } =
     useMultisetpForm([
+      <CalendarComponent {...data} updateFields={updateFields} />,
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
-      <CalendarComponent />,
     ]);
 
   function onSubmit(e: FormEvent) {
