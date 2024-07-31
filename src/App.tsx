@@ -4,10 +4,10 @@ import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
 import CalendarComponent from "./ScheduleForm";
 
-// type DateRange = {
-//   startDate: Date | undefined;
-//   endDate: Date | undefined;
-// };
+type DateRange = {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+};
 
 type FormData = {
   requesterName: string;
@@ -23,6 +23,7 @@ type FormData = {
   };
   startTime: string;
   endTime: string;
+  dateRange: DateRange;
 };
 
 const INITIAL_DATA: FormData = {
@@ -39,6 +40,10 @@ const INITIAL_DATA: FormData = {
   },
   startTime: "10:00",
   endTime: "19:00",
+  dateRange: {
+    startDate: undefined,
+    endDate: undefined,
+  },
 };
 
 function App() {
