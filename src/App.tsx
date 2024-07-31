@@ -2,7 +2,7 @@ import { useMultisetpForm } from "./useMultistepFrom";
 import UserForm from "./UserForm";
 import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
-import CalendarComponent from "./CalendarComponent";
+import CalendarComponent from "./ScheduleForm";
 
 type FormData = {
   requesterName: string;

@@ -7,7 +7,7 @@ type DateRange = {
   endDate: Date | undefined;
 };
 
-function CalendarComponent() {
+function ScheduleForm() {
   const [dateRange, setDateRange] = useState<DateRange>({
     startDate: undefined,
     endDate: undefined,
@@ -31,7 +31,7 @@ function CalendarComponent() {
   };
 
   return (
-    <div className="CalendarComponent">
+    <div className="ScheduleForm">
       <DatePicker
         selected={dateRange.startDate}
         onChange={handleDateChange}
@@ -52,4 +52,4 @@ function CalendarComponent() {
   );
 }
 
-export default CalendarComponent;
+export default ScheduleForm;
