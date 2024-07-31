@@ -1,31 +1,34 @@
 import { useMultisetpForm } from "./useMultistepFrom";
 import UserForm from "./UserForm";
-import AccountForm from "./AccountForm";
 import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
 
 type FormData = {
-  firstName: string;
-  lastName: string;
-  age: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-  email: string;
-  password: string;
+  requesterName: string;
+  requesterID: string;
+  requesterEmail: string;
+  eventName: string;
+  eventType: "internal" | "external";
+  assistants: number;
+  materials: {
+    tv: boolean;
+    videobeam: boolean;
+    microphone: boolean;
+  };
 };
 
 const INITIAL_DATA: FormData = {
-  firstName: "",
-  lastName: "",
-  age: "",
-  street: "",
-  city: "",
-  state: "",
-  zip: "",
-  email: "",
-  password: "",
+  requesterName: "",
+  requesterID: "",
+  requesterEmail: "",
+  eventName: "",
+  eventType: "internal",
+  assistants: 0,
+  materials: {
+    tv: false,
+    videobeam: false,
+    microphone: false,
+  },
 };
 
 function App() {
@@ -41,7 +44,6 @@ function App() {
     useMultisetpForm([
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
-      <AccountForm {...data} updateFields={updateFields} />,
     ]);
 
   function onSubmit(e: FormEvent) {

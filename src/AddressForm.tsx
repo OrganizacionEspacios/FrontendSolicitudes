@@ -1,29 +1,98 @@
 import FormWrapper from "./FormWrapper";
 
-type AddressData = {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
+type EventData = {
+  eventName: string;
+  eventType: "internal" | "external";
+  assistants: number;
+  materials: {
+    tv: boolean;
+    videobeam: boolean;
+    microphone: boolean;
+  };
 };
 
-type AddressFormProps = AddressData & {
-  updateFields: (fields: Partial<AddressData>) => void;
+type EventFormProps = EventData & {
+  updateFields: (fields: Partial<EventData>) => void;
 };
 
-const AddressForm = ({street, city, state, zip, updateFields}: AddressFormProps) => {
+const EventForm = ({
+  eventName,
+  eventType,
+  assistants,
+  materials,
+  updateFields,
+}: EventFormProps) => {
   return (
-    <FormWrapper title="Address">
-      <label>Street</label>
-      <input autoFocus required type="text" value={street} onChange={e => updateFields({street: e.target.value})}/>
-      <label>City</label>
-      <input required type="text" value={city} onChange={e => updateFields({city: e.target.value})}/>
-      <label>State</label>
-      <input required type="text" value={state} onChange={e => updateFields({state: e.target.value})}/>
-      <label>Zip</label>
-      <input required type="text"value={zip} onChange={e => updateFields({zip: e.target.value})} />
+    <FormWrapper title="Evento">
+      <label>Nombre del evento</label>
+      <input
+        autoFocus
+        required
+        type="text"
+        value={eventName}
+        onChange={(e) => updateFields({ eventName: e.target.value })}
+      />
+
+      <label>Tipo de evento</label>
+      <select
+        value={eventType}
+        onChange={(e) =>
+          updateFields({ eventType: e.target.value as "internal" | "external" })
+        }
+      >
+        <option value="internal">Interno</option>
+        <option value="external">Externo</option>
+      </select>
+
+      <label>Número de asistentes</label>
+      <input
+        required
+        type="number"
+        value={assistants}
+        onChange={(e) => updateFields({ assistants: parseInt(e.target.value) })}
+      />
+
+      <label>Materiales requeridos</label>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={materials.tv}
+            onChange={(e) =>
+              updateFields({
+                materials: { ...materials, tv: e.target.checked },
+              })
+            }
+          />
+          TV
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={materials.videobeam}
+            onChange={(e) =>
+              updateFields({
+                materials: { ...materials, videobeam: e.target.checked },
+              })
+            }
+          />
+          Videobeam
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={materials.microphone}
+            onChange={(e) =>
+              updateFields({
+                materials: { ...materials, microphone: e.target.checked },
+              })
+            }
+          />
+          Microphone
+        </label>
+      </div>
     </FormWrapper>
   );
 };
 
-export default AddressForm;
+export default EventForm;

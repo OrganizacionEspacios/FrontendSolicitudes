@@ -1,26 +1,45 @@
 import FormWrapper from "./FormWrapper";
 
-
 type UserData = {
-  firstName: string;
-  lastName: string;
-  age: string;
-}
-
-type UserFormProps = UserData & {
-  updateFields: (fields: Partial<UserData>) => void
+  requesterName: string;
+  requesterID: string;
+  requesterEmail: string;
 };
 
-const UserForm = ({ firstName, lastName, age, updateFields}: UserFormProps) => {
- 
+type UserFormProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
+};
+
+const UserForm = ({
+  requesterName,
+  requesterID,
+  requesterEmail,
+  updateFields,
+}: UserFormProps) => {
   return (
-    <FormWrapper title="User Details">
-      <label>First Name</label>
-      <input  autoFocus required type="text" value={firstName} onChange={e => updateFields({firstName: e.target.value})}/>
-      <label>Last Name</label>
-      <input required type="text" value={lastName} onChange={e => updateFields({lastName: e.target.value})}/>
-      <label>Age</label>
-      <input required min={1} type="number" value={age} onChange={e => updateFields({age: e.target.value})}/>
+    <FormWrapper title="Detalles de usuario">
+      <label>Nombre del solicitante</label>
+      <input
+        autoFocus
+        required
+        type="text"
+        value={requesterName}
+        onChange={(e) => updateFields({ requesterName: e.target.value })}
+      />
+      <label>ID del solicitante</label>
+      <input
+        required
+        type="text"
+        value={requesterID}
+        onChange={(e) => updateFields({ requesterID: e.target.value })}
+      />
+      <label>Email del solicitante</label>
+      <input
+        required
+        type="email"
+        value={requesterEmail}
+        onChange={(e) => updateFields({ requesterEmail: e.target.value })}
+      />
     </FormWrapper>
   );
 };
