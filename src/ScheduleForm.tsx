@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -23,16 +22,10 @@ function ScheduleForm({
   updateFields,
   dateRange,
 }: ScheduleFormProps) {
-  // const [dateRange, setDateRange] = useState<DateRange>({
-  //   startDate: undefined,
-  //   endDate: undefined,
-  // });
 
-  const handleDateChange = (dates: [Date | null, Date | null]) => {
-    const [start, end] = dates;
-
+  const handleDateChange = (date: Date | null) => {
     updateFields({
-      dateRange: { startDate: start || undefined, endDate: end || undefined },
+      dateRange: { startDate: date || undefined, endDate: undefined },
     });
   };
 
@@ -41,9 +34,6 @@ function ScheduleForm({
       <DatePicker
         selected={dateRange.startDate}
         onChange={handleDateChange}
-        startDate={dateRange.startDate}
-        endDate={dateRange.endDate}
-        selectsRange
         inline
       />
       <label>
