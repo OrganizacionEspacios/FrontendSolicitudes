@@ -3,6 +3,7 @@ import UserForm from "./UserForm";
 import AddressForm from "./AddressForm";
 import { FormEvent, useState } from "react";
 import CalendarComponent from "./ScheduleForm";
+import SummaryForm from "./SummaryForm";
 
 type FormData = {
   requesterName: string;
@@ -52,6 +53,7 @@ function App() {
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
       <CalendarComponent {...data} updateFields={updateFields} />,
+      <SummaryForm data={data} />,
     ]);
 
   async function onSubmit(e: FormEvent) {
