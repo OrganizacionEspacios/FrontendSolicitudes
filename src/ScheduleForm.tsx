@@ -1,15 +1,11 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-type DateRange = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-};
+import FormWrapper from "./FormWrapper";
 
 type ScheduleData = {
   startTime: string;
   endTime: string;
-  dateRange: DateRange;
+  startDate: Date | undefined;
 };
 
 type ScheduleFormProps = ScheduleData & {
@@ -20,22 +16,17 @@ function ScheduleForm({
   startTime,
   endTime,
   updateFields,
-  dateRange,
+  startDate,
 }: ScheduleFormProps) {
-
   const handleDateChange = (date: Date | null) => {
     updateFields({
-      dateRange: { startDate: date || undefined, endDate: undefined },
+      startDate: date || undefined,
     });
   };
 
   return (
-    <div className="ScheduleForm">
-      <DatePicker
-        selected={dateRange.startDate}
-        onChange={handleDateChange}
-        inline
-      />
+    <FormWrapper title="Horario de reserva">
+      <DatePicker selected={startDate} onChange={handleDateChange} inline />
       <label>
         Hora de inicio:
         <input
@@ -52,7 +43,7 @@ function ScheduleForm({
           value={endTime}
         />
       </label>
-    </div>
+    </FormWrapper>
   );
 }
 
