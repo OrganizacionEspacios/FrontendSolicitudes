@@ -1,20 +1,35 @@
-import React from 'react';
+import React from "react";
 
 type FormData = {
+  // UserForm fields
   requesterName: string;
   requesterID: string;
   requesterEmail: string;
+  requesterAffiliationType: string;
+  requesterDependency: string;
+
+  // EventForm fields
   eventName: string;
   eventType: "internal" | "external";
-  assistants: number;
-  materials: {
+  eventNumberAsistants: number;
+  eventMaterials: {
     tv: boolean;
     videobeam: boolean;
     microphone: boolean;
   };
-  startTime: string;
-  endTime: string;
-  startDate: Date | undefined;
+  eventComments: string;
+
+  // ScheduleForm fields
+  startDate: Date;
+  endDate: Date;
+  schedules: [
+    {
+      dayOfWeek: string[];
+      startTime: string;
+      endTime: string;
+      recurrence: string | null;
+    }
+  ];
 };
 
 interface SummaryFormProps {
@@ -26,13 +41,16 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
     requesterName,
     requesterID,
     requesterEmail,
+    requesterAffiliationType,
+    requesterDependency,
     eventName,
     eventType,
-    assistants,
-    materials,
-    startTime,
-    endTime,
+    eventNumberAsistants,
+    eventMaterials,
+    eventComments,
     startDate,
+    endDate,
+    schedules,
   } = data;
 
   return (
@@ -49,6 +67,12 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
         <li>
           <strong>Email:</strong> {requesterEmail}
         </li>
+        <li>
+          <strong>Tipo de afiliación:</strong> {requesterAffiliationType}
+        </li>
+        <li>
+          <strong>Dependencia:</strong> {requesterDependency}
+        </li>
       </ul>
       <p>Detalles del evento:</p>
       <ul>
@@ -59,20 +83,36 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
           <strong>Tipo de evento:</strong> {eventType}
         </li>
         <li>
-          <strong>Asistentes:</strong> {assistants}
+          <strong>Número de asistentes:</strong> {eventNumberAsistants}
         </li>
         <li>
-          <strong>Materiales:</strong> {materials.tv ? 'TV, ' : ''}{materials.videobeam ? 'Videobeam, ' : ''}{materials.microphone ? 'Micrófono' : ''}
+          <strong>Materiales:</strong> {eventMaterials.tv ? "TV, " : ""}
+          {eventMaterials.videobeam ? "Videobeam, " : ""}
+          {eventMaterials.microphone ? "Micrófono" : ""}
         </li>
         <li>
-          <strong>Fecha:</strong> {startDate?.toLocaleDateString()}
+          <strong>Comentarios:</strong> {eventComments}
         </li>
         <li>
-          <strong>Hora de inicio:</strong> {startTime}
+          <strong>Fecha de inicio:</strong> {startDate?.toLocaleDateString()}
         </li>
         <li>
-          <strong>Hora de fin:</strong> {endTime}
+          <strong>Fecha de fin:</strong> {endDate?.toLocaleDateString()}
         </li>
+      </ul>
+      <p>Horarios:</p>
+      <ul>
+        {schedules.map((schedule, index) => (
+          <li key={index}>
+            <strong>Días de la semana:</strong> {schedule.dayOfWeek.join(", ")}
+            <br />
+            <strong>Hora de inicio:</strong> {schedule.startTime}
+            <br />
+            <strong>Hora de fin:</strong> {schedule.endTime}
+            <br />
+            <strong>Recurrencia:</strong> {schedule.recurrence || "N/A"}
+          </li>
+        ))}
       </ul>
     </div>
   );

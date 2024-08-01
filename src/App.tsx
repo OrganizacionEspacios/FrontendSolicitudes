@@ -1,42 +1,69 @@
 import { useMultisetpForm } from "./useMultistepFrom";
 import UserForm from "./UserForm";
-import AddressForm from "./AddressForm";
+import AddressForm from "./EventForm";
 import { FormEvent, useState } from "react";
-import CalendarComponent from "./ScheduleForm";
+import ScheduleForm from "./ScheduleForm";
 import SummaryForm from "./SummaryForm";
 
 type FormData = {
+  // UserForm fields
   requesterName: string;
   requesterID: string;
   requesterEmail: string;
+  requesterAffiliationType: string;
+  requesterDependency: string;
+
+  // EventForm fields
   eventName: string;
   eventType: "internal" | "external";
-  assistants: number;
-  materials: {
+  eventNumberAsistants: number;
+  eventMaterials: {
     tv: boolean;
     videobeam: boolean;
     microphone: boolean;
   };
-  startTime: string;
-  endTime: string;
-  startDate: Date | undefined;
+  eventComments: string;
+
+  // ScheduleForm fields
+  startDate: Date;
+  endDate: Date;
+  schedules: [
+    {
+      dayOfWeek: string[];
+      startTime: string;
+      endTime: string;
+      recurrence: string | null;
+    }
+  ];
 };
 
 const INITIAL_DATA: FormData = {
   requesterName: "",
   requesterID: "",
   requesterEmail: "",
+  requesterAffiliationType: "",
+  requesterDependency: "",
+
   eventName: "",
   eventType: "internal",
-  assistants: 0,
-  materials: {
+  eventNumberAsistants: 0,
+  eventMaterials: {
     tv: false,
     videobeam: false,
     microphone: false,
   },
-  startTime: "10:00",
-  endTime: "19:00",
-  startDate: undefined,
+  eventComments: "",
+
+  startDate: new Date(),
+  endDate: new Date(),
+  schedules: [
+    {
+      dayOfWeek: ["Monday"],
+      startTime: "10:00",
+      endTime: "19:00",
+      recurrence: null,
+    },
+  ],
 };
 
 function App() {
@@ -52,7 +79,7 @@ function App() {
     useMultisetpForm([
       <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
-      <CalendarComponent {...data} updateFields={updateFields} />,
+      <ScheduleForm {...data} updateFields={updateFields} />,
       <SummaryForm data={data} />,
     ]);
 

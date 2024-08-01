@@ -3,12 +3,13 @@ import FormWrapper from "./FormWrapper";
 type EventData = {
   eventName: string;
   eventType: "internal" | "external";
-  assistants: number;
-  materials: {
+  eventNumberAsistants: number;
+  eventMaterials: {
     tv: boolean;
     videobeam: boolean;
     microphone: boolean;
   };
+  eventComments: string;
 };
 
 type EventFormProps = EventData & {
@@ -18,8 +19,9 @@ type EventFormProps = EventData & {
 const EventForm = ({
   eventName,
   eventType,
-  assistants,
-  materials,
+  eventNumberAsistants,
+  eventMaterials,
+  eventComments,
   updateFields,
 }: EventFormProps) => {
   return (
@@ -48,8 +50,10 @@ const EventForm = ({
       <input
         required
         type="number"
-        value={assistants}
-        onChange={(e) => updateFields({ assistants: parseInt(e.target.value) })}
+        value={eventNumberAsistants}
+        onChange={(e) =>
+          updateFields({ eventNumberAsistants: parseInt(e.target.value) })
+        }
       />
 
       <label>Materiales requeridos</label>
@@ -57,10 +61,10 @@ const EventForm = ({
         <label>
           <input
             type="checkbox"
-            checked={materials.tv}
+            checked={eventMaterials.tv}
             onChange={(e) =>
               updateFields({
-                materials: { ...materials, tv: e.target.checked },
+                eventMaterials: { ...eventMaterials, tv: e.target.checked },
               })
             }
           />
@@ -69,10 +73,13 @@ const EventForm = ({
         <label>
           <input
             type="checkbox"
-            checked={materials.videobeam}
+            checked={eventMaterials.videobeam}
             onChange={(e) =>
               updateFields({
-                materials: { ...materials, videobeam: e.target.checked },
+                eventMaterials: {
+                  ...eventMaterials,
+                  videobeam: e.target.checked,
+                },
               })
             }
           />
@@ -81,16 +88,25 @@ const EventForm = ({
         <label>
           <input
             type="checkbox"
-            checked={materials.microphone}
+            checked={eventMaterials.microphone}
             onChange={(e) =>
               updateFields({
-                materials: { ...materials, microphone: e.target.checked },
+                eventMaterials: {
+                  ...eventMaterials,
+                  microphone: e.target.checked,
+                },
               })
             }
           />
           Microphone
         </label>
       </div>
+
+      <label>Comentarios del evento</label>
+      <textarea
+        value={eventComments}
+        onChange={(e) => updateFields({ eventComments: e.target.value })}
+      />
     </FormWrapper>
   );
 };
