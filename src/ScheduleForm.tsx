@@ -23,7 +23,6 @@ type ScheduleFormProps = ScheduleData & {
 function ScheduleForm({
   startDate,
   schedules,
-  endDate,
   updateFields,
 }: ScheduleFormProps) {
   const [dayOfWeek, setDayOfWeek] = useState<string>("");
