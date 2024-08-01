@@ -62,10 +62,30 @@ function App() {
       <CalendarComponent {...data} updateFields={updateFields} />,
     ]);
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!isLastStep) return next();
-    alert("Sending the form");
+
+    console.log("Submitting form:", data);
+
+    try {
+      const response = await fetch("http://localhost:3000/add-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit the form.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while submitting the form.");
+    }
   }
 
   return (
