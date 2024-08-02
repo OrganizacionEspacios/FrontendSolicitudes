@@ -39,6 +39,16 @@ interface SummaryFormProps {
   data: FormData;
 }
 
+const dayOfWeekMapping: { [key: string]: string } = {
+  Sunday: "Domingo",
+  Monday: "Lunes",
+  Tuesday: "Martes",
+  Wednesday: "Miércoles",
+  Thursday: "Jueves",
+  Friday: "Viernes",
+  Saturday: "Sábado",
+};
+
 const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
   const {
     requesterName,
@@ -91,18 +101,19 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
         <li>
           <strong>Comentarios:</strong> {eventComments}
         </li>
+      </ul>
+      <p>Horarios:</p>
+      <ul>
         <li>
           <strong>Fecha de inicio:</strong> {startDate?.toLocaleDateString()}
         </li>
         <li>
           <strong>Fecha de fin:</strong> {endDate?.toLocaleDateString()}
         </li>
-      </ul>
-      <p>Horarios:</p>
-      <ul>
         {schedules.map((schedule, index) => (
           <li key={index}>
-            <strong>Días de la semana:</strong> {schedule.dayOfWeek.join(", ")}
+            <strong>Días de la semana:</strong>{" "}
+            {schedule.dayOfWeek.map((day) => dayOfWeekMapping[day]).join(", ")}
             <br />
             <strong>Hora de inicio:</strong> {schedule.startTime}
             <br />

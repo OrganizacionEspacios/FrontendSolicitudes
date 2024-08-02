@@ -72,7 +72,6 @@ function ScheduleForm({
   return (
     <FormWrapper title="Horario de reserva">
       <DatePicker selected={startDate} onChange={handleDateChange} inline />
-      {dayOfWeek && <p>Día de la semana: {dayOfWeek}</p>}
       <label>
         Hora de inicio:
         <input
