@@ -25,7 +25,7 @@ function ScheduleForm({
   schedules,
   updateFields,
 }: ScheduleFormProps) {
-  const [dayOfWeek, setDayOfWeek] = useState<string>("");
+  const [, setDayOfWeek] = useState<string>("");
 
   useEffect(() => {
     if (startDate) {
