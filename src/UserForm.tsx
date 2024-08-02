@@ -2,10 +2,14 @@ import FormWrapper from "./FormWrapper";
 
 type UserData = {
   requesterName: string;
-  requesterID: string;
   requesterEmail: string;
-  requesterAffiliationType: string;
-  requesterDependency: string;
+  requesterAffiliationType:
+    | "estudiante"
+    | "docente"
+    | "contratista"
+    | "funcionario/administrativo"
+    | "externoUN";
+  requesterDependency: string | null;
 };
 
 type UserFormProps = UserData & {
@@ -14,7 +18,6 @@ type UserFormProps = UserData & {
 
 const UserForm = ({
   requesterName,
-  requesterID,
   requesterEmail,
   requesterAffiliationType,
   requesterDependency,
@@ -30,13 +33,6 @@ const UserForm = ({
         value={requesterName}
         onChange={(e) => updateFields({ requesterName: e.target.value })}
       />
-      <label>ID del solicitante</label>
-      <input
-        required
-        type="text"
-        value={requesterID}
-        onChange={(e) => updateFields({ requesterID: e.target.value })}
-      />
       <label>Email del solicitante</label>
       <input
         required
@@ -48,24 +44,35 @@ const UserForm = ({
       <select
         required
         value={requesterAffiliationType}
-        onChange={(e) => updateFields({ requesterAffiliationType: e.target.value })}
+        onChange={(e) =>
+          updateFields({
+            requesterAffiliationType: e.target.value as
+              | "estudiante"
+              | "docente"
+              | "contratista"
+              | "funcionario/administrativo"
+              | "externoUN"
+              | undefined,
+          })
+        }
       >
         <option value="">Seleccione una opción</option>
         <option value="estudiante">Estudiante</option>
-        <option value="profesor">Profesor</option>
-        <option value="administrativo">Administrativo</option>
+        <option value="docente">Docente</option>
+        <option value="contratista">Contratista</option>
+        <option value="funcionario/administrativo">
+          Funcionario/Administrativo
+        </option>
+        <option value="externoUN">Externo UN</option>
       </select>
       <label>Dependencia</label>
-      <select
-        required
-        value={requesterDependency}
-        onChange={(e) => updateFields({ requesterDependency: e.target.value })}
-      >
-        <option value="">Seleccione una opción</option>
-        <option value="ingeniería">Ingeniería</option>
-        <option value="economía">Economía</option>
-        <option value="ciencias">Ciencias</option>
-      </select>
+      <input
+        type="text"
+        value={requesterDependency || ""}
+        onChange={(e) =>
+          updateFields({ requesterDependency: e.target.value || null })
+        }
+      />
     </FormWrapper>
   );
 };

@@ -3,19 +3,22 @@ import React from "react";
 type FormData = {
   // UserForm fields
   requesterName: string;
-  requesterID: string;
   requesterEmail: string;
-  requesterAffiliationType: string;
-  requesterDependency: string;
+  requesterAffiliationType:
+    | "estudiante"
+    | "docente"
+    | "contratista"
+    | "funcionario/administrativo"
+    | "externoUN";
+  requesterDependency: string | null;
 
   // EventForm fields
   eventName: string;
-  eventType: "internal" | "external";
+  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
     videobeam: boolean;
-    microphone: boolean;
   };
   eventComments: string;
 
@@ -39,7 +42,6 @@ interface SummaryFormProps {
 const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
   const {
     requesterName,
-    requesterID,
     requesterEmail,
     requesterAffiliationType,
     requesterDependency,
@@ -62,16 +64,13 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
           <strong>Nombre:</strong> {requesterName}
         </li>
         <li>
-          <strong>ID:</strong> {requesterID}
-        </li>
-        <li>
           <strong>Email:</strong> {requesterEmail}
         </li>
         <li>
           <strong>Tipo de afiliación:</strong> {requesterAffiliationType}
         </li>
         <li>
-          <strong>Dependencia:</strong> {requesterDependency}
+          <strong>Dependencia:</strong> {requesterDependency || "N/A"}
         </li>
       </ul>
       <p>Detalles del evento:</p>
@@ -87,8 +86,7 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
         </li>
         <li>
           <strong>Materiales:</strong> {eventMaterials.tv ? "TV, " : ""}
-          {eventMaterials.videobeam ? "Videobeam, " : ""}
-          {eventMaterials.microphone ? "Micrófono" : ""}
+          {eventMaterials.videobeam ? "Videobeam" : ""}
         </li>
         <li>
           <strong>Comentarios:</strong> {eventComments}

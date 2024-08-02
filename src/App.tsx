@@ -8,19 +8,22 @@ import SummaryForm from "./SummaryForm";
 type FormData = {
   // UserForm fields
   requesterName: string;
-  requesterID: string;
   requesterEmail: string;
-  requesterAffiliationType: string;
-  requesterDependency: string;
+  requesterAffiliationType:
+    | "estudiante"
+    | "docente"
+    | "contratista"
+    | "funcionario/administrativo"
+    | "externoUN";
+  requesterDependency: string | null;
 
   // EventForm fields
   eventName: string;
-  eventType: "internal" | "external";
+  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
     videobeam: boolean;
-    microphone: boolean;
   };
   eventComments: string;
 
@@ -39,18 +42,16 @@ type FormData = {
 
 const INITIAL_DATA: FormData = {
   requesterName: "",
-  requesterID: "",
   requesterEmail: "",
-  requesterAffiliationType: "",
-  requesterDependency: "",
+  requesterAffiliationType: "estudiante", // Set to one of the new values
+  requesterDependency: null, // Allow null
 
   eventName: "",
-  eventType: "internal",
+  eventType: "reunión", // Set to one of the new values
   eventNumberAsistants: 0,
   eventMaterials: {
     tv: false,
     videobeam: false,
-    microphone: false,
   },
   eventComments: "",
 

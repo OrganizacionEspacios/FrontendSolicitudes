@@ -2,12 +2,11 @@ import FormWrapper from "./FormWrapper";
 
 type EventData = {
   eventName: string;
-  eventType: "internal" | "external";
+  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
     videobeam: boolean;
-    microphone: boolean;
   };
   eventComments: string;
 };
@@ -39,11 +38,21 @@ const EventForm = ({
       <select
         value={eventType}
         onChange={(e) =>
-          updateFields({ eventType: e.target.value as "internal" | "external" })
+          updateFields({
+            eventType: e.target.value as
+              | "reunión"
+              | "clase"
+              | "parcial"
+              | "congreso"
+              | "otro",
+          })
         }
       >
-        <option value="internal">Interno</option>
-        <option value="external">Externo</option>
+        <option value="reunión">Reunión</option>
+        <option value="clase">Clase</option>
+        <option value="parcial">Parcial</option>
+        <option value="congreso">Congreso</option>
+        <option value="otro">Otro</option>
       </select>
 
       <label>Número de asistentes</label>
@@ -84,21 +93,6 @@ const EventForm = ({
             }
           />
           Videobeam
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={eventMaterials.microphone}
-            onChange={(e) =>
-              updateFields({
-                eventMaterials: {
-                  ...eventMaterials,
-                  microphone: e.target.checked,
-                },
-              })
-            }
-          />
-          Microphone
         </label>
       </div>
 
