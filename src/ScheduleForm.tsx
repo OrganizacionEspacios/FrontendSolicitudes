@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormWrapper from "./FormWrapper";
@@ -27,6 +27,30 @@ function ScheduleForm({
 }: ScheduleFormProps) {
   const [dayOfWeek, setDayOfWeek] = useState<string>("");
 
+  useEffect(() => {
+    if (startDate) {
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const dayOfWeek = days[startDate.getDay()];
+      setDayOfWeek(dayOfWeek);
+      updateFields({
+        schedules: [
+          {
+            ...schedules[0],
+            dayOfWeek: [dayOfWeek],
+          },
+        ],
+      });
+    }
+  }, [startDate, updateFields, schedules]);
+
   const handleDateChange = (date: Date | null) => {
     if (date) {
       updateFields({
@@ -44,6 +68,14 @@ function ScheduleForm({
       ];
       const dayOfWeek = days[date.getDay()];
       setDayOfWeek(dayOfWeek);
+      updateFields({
+        schedules: [
+          {
+            ...schedules[0],
+            dayOfWeek: [dayOfWeek],
+          },
+        ],
+      });
       console.log(`Selected date: ${date}, Day of the week: ${dayOfWeek}`);
     } else {
       setDayOfWeek("");
