@@ -34,4 +34,10 @@ button {
   cursor: pointer;
   background-color: #7C982F;
   color: white;
+  transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+button:hover {
+  background-color: #98BA3B; /* Slightly darker green */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
