@@ -121,13 +121,13 @@ function App() {
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}
-          <div className="button-container">
+          <div className={`button-container ${isFirstStep || isLastStep ? 'single-button' : ''}`}>
             {!isFirstStep && (
               <button type="button" onClick={back}>
-                Back
+                Regresar
               </button>
             )}
-            <button type="submit">{isLastStep ? "Finish" : "Next"}</button>
+            <button type="submit">{isLastStep ? "Finalizar" : "Siguiente"}</button>
           </div>
         </form>
       </div>

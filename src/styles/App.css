@@ -8,15 +8,30 @@
     font-family: Arial;
   }
   
-  .step-indicator {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-  
-  .button-container {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
-  }
+.step-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.button-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between; /* Default for two buttons */
+}
+
+.button-container.single-button {
+  justify-content: flex-end; /* Align single button to the end */
+}
+
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #7C982F;
+  color: white;
+}
