@@ -113,7 +113,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <HomepageNavbar />
       <div className="container">
         <form onSubmit={onSubmit} className="form-container">
@@ -121,18 +121,24 @@ function App() {
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}
-          <div className={`button-container ${isFirstStep || isLastStep ? 'single-button' : ''}`}>
+          <div
+            className={`button-container ${
+              isFirstStep || isLastStep ? "single-button" : ""
+            }`}
+          >
             {!isFirstStep && (
               <button type="button" onClick={back}>
                 Regresar
               </button>
             )}
-            <button type="submit">{isLastStep ? "Finalizar" : "Siguiente"}</button>
+            <button type="submit">
+              {isLastStep ? "Finalizar" : "Siguiente"}
+            </button>
           </div>
         </form>
       </div>
       <HomepageNavbar />
-    </div>
+    </>
   );
 }
 

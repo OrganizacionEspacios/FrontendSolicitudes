@@ -1,12 +1,22 @@
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+ 
+}
+
 
 .container {
+  height: 80%;
   display: flex;
   flex-direction: column;
-  padding-top: 6rem;
   align-items: center;
+  justify-content: center;
   background-image: url("../assets/fondoInicio.jpeg");
   background-size: cover;
-  height: 70vh;
 }
 
 .form-container {
@@ -16,6 +26,8 @@
   border-radius: 0.5rem;
   font-family: Arial;
   position: relative;
+  height: fit-content;
+  overflow: hidden;
 }
 .step-indicator {
   position: absolute;
@@ -38,7 +50,7 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: clamp(1.5rem, 2vh, 1.6rem);
   cursor: pointer;
   background-color: #7C982F;
   color: white;

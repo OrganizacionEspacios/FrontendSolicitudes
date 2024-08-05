@@ -2,7 +2,6 @@
 .title {
   text-align: center;
   margin: 0;
-  margin-bottom: 2rem;
   font-size: 2.5rem;
 }
 
@@ -13,16 +12,15 @@
   justify-content: center;
   grid-template-columns: auto minmax(auto, 400px);
 }
-
 .content > label {
-  font-size: 1.5rem;
+  font-size: clamp(1.7rem, 2vh, 2.2rem);
   margin-right: 1rem;
 }
 
 .content > input,
 .content > select,
 .content > label > input  {
-  font-size: 1.2rem;
+  font-size: clamp(1.4rem, 2vh, 2.2rem);
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
@@ -30,9 +28,4 @@
 
 .content > select > option[value=""] {
   color: gray;
-}
-
-/* New rule to target the text of checkbox labels */
-.content > div > label > span {
-  font-size: 1.5rem;
 }
