@@ -1,0 +1,60 @@
+/* styles.module.css */
+div .customButton {
+  background-color: #7c982f;
+  color: #ffffff;
+}
+
+div .customButton:hover {
+  background-color: #8db02a;
+  color: #ffffff;
+}
+
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.centeredContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+  padding: 3rem;
+}
+
+.fullBackgroundImage {
+  background-image: url("../assets/fondoInicio.jpeg");
+  background-size: cover;
+}
+
+.logoImage {
+  width: 12rem;
+  height: 12rem;
+}
+
+.homepageNavbarLogo {
+  width: 10rem;
+  height: 3.5rem;
+}
+
+.homepageNavbarTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.homepageNavbarTitle > p {
+  margin: 0;
+}
+
+.homepageNavbar {
+  background: rgba(0, 0, 0, 0.58);
+  padding: 0.3rem;
+}
