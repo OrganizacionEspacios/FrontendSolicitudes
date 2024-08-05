@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import styles from "./styles/FormWrapper.module.css"; // Import the CSS module
 
 type FormWrapperProps = {
   title: string;
@@ -8,25 +9,8 @@ type FormWrapperProps = {
 const FormWrapper = ({ title, children }: FormWrapperProps) => {
   return (
     <div>
-      <h2
-        style={{
-          textAlign: "center",
-          margin: 0,
-          marginBottom: "2rem",
-        }}
-      >
-        {title}
-      </h2>
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem .5rem",
-          justifyContent: "flex-start",
-          gridTemplateColumns: "auto minmax(auto, 400px)",
-        }}
-      >
-        {children}
-      </div>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

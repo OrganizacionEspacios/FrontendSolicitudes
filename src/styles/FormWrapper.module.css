@@ -1,0 +1,38 @@
+/* FormWrapper.module.css */
+.title {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.content {
+  padding: 4rem;
+  display: grid;
+  gap: 1rem 0.5rem;
+  justify-content: center;
+  grid-template-columns: auto minmax(auto, 400px);
+}
+
+.content > label {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.content > input,
+.content > select,
+.content > label > input  {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.content > select > option[value=""] {
+  color: gray;
+}
+
+/* New rule to target the text of checkbox labels */
+.content > div > label > span {
+  font-size: 1.5rem;
+}
