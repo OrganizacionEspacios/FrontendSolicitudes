@@ -131,6 +131,7 @@ function App() {
           </div>
         </form>
       </div>
+      <HomepageNavbar />
     </div>
   );
 }
