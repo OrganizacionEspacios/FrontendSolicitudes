@@ -2,27 +2,28 @@
 .title {
   text-align: center;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 2vh, 2.2rem);
 }
 
 .content {
-  padding: 4rem;
+  padding: 1rem;
   display: grid;
   gap: 1rem 0.5rem;
   justify-content: center;
-  grid-template-columns: auto minmax(auto, 400px);
+  grid-template-columns: auto minmax(auto, 40%);
+  width: fit-content;
 }
 .content > label {
-  font-size: clamp(1.7rem, 2vh, 2.2rem);
+  font-size: clamp(1.1rem, 2vh, 2.2rem);
   margin-right: 1rem;
 }
 
 .content > input,
 .content > select,
 .content > label > input  {
-  font-size: clamp(1.4rem, 2vh, 2.2rem);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  font-size: clamp(1rem, 2vh, 2.2rem);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
   border: 1px solid #ccc;
 }
 

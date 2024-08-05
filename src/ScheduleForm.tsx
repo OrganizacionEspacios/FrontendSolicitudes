@@ -104,22 +104,31 @@ function ScheduleForm({
   return (
     <FormWrapper title="Horario de reserva">
       <DatePicker selected={startDate} onChange={handleDateChange} inline />
-      <label>
-        Hora de inicio:
-        <input
-          type="time"
-          onChange={(e) => handleTimeChange("startTime", e.target.value)}
-          value={schedules[0].startTime}
-        />
-      </label>
-      <label>
-        Hora de fin:
-        <input
-          type="time"
-          onChange={(e) => handleTimeChange("endTime", e.target.value)}
-          value={schedules[0].endTime}
-        />
-      </label>
+      <div className="time-selector-container" style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        marginLeft: "1rem",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <label>
+          Hora de inicio:
+          <input
+            type="time"
+            onChange={(e) => handleTimeChange("startTime", e.target.value)}
+            value={schedules[0].startTime}
+          />
+        </label>
+        <label>
+          Hora de fin:
+          <input
+            type="time"
+            onChange={(e) => handleTimeChange("endTime", e.target.value)}
+            value={schedules[0].endTime}
+          />
+        </label>
+      </div>
     </FormWrapper>
   );
 }
