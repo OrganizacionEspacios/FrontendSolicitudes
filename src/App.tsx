@@ -116,7 +116,7 @@ function App() {
     <div>
       <HomepageNavbar />
       <div className="container">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="form-container">
           <div className="step-indicator">
             {currentStepIndex + 1} / {steps.length}
           </div>
