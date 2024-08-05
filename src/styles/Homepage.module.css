@@ -37,8 +37,8 @@ div .customButton:hover {
 }
 
 .homepageNavbarLogo {
-  width: 10rem;
-  height: 3.5rem;
+  max-width: 15%;
+  height: auto;
 }
 
 .homepageNavbarTitle {
@@ -46,7 +46,7 @@ div .customButton:hover {
   flex-direction: column;
   justify-content: center;
   color: white;
-  font-size: 0.9rem;
+  font-size: clamp(0.5rem, 3vh, 1.5rem);
   margin-left: 1rem;
 }
 
@@ -59,5 +59,5 @@ div .customButton:hover {
   background: rgba(0, 0, 0, 0.58);
   padding: 0.3rem;
   height: 10%;
-  overflow: scroll;
+  overflow: hidden;
 }
