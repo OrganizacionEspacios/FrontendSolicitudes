@@ -27,7 +27,7 @@ body {
   font-family: Arial;
   position: relative;
   height: fit-content;
-  overflow: hidden;
+  overflow: scroll;
 }
 .step-indicator {
   position: absolute;

@@ -1,0 +1,45 @@
+/* SummaryForm.module.css */
+
+.container {
+  padding: 1rem;
+  width: 40rem;
+
+}
+
+.heading {
+  font-size: clamp(1.5rem, 2vh, 2.5rem);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
+.sectionTitle {
+  font-size: clamp(1rem, 2vh, 1.25rem);
+  margin-bottom: 0.5rem;
+}
+
+.listItem {
+  font-size: clamp(0.875rem, 1vh, 1rem);
+  margin-bottom: 0.5rem;
+}
+
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+   align-items: center;
+}
+

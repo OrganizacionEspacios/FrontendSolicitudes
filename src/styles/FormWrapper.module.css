@@ -12,6 +12,7 @@
   justify-content: center;
   grid-template-columns: auto minmax(auto, 40%);
   width: fit-content;
+  
 }
 .content > label {
   font-size: clamp(1.1rem, 2vh, 2.2rem);

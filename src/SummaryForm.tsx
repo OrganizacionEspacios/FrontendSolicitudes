@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles/SummaryForm.module.css";
 
 type FormData = {
   // UserForm fields
@@ -66,63 +67,54 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
   } = data;
 
   return (
-    <div>
-      <h2>Resumen de la reserva</h2>
-      <p>Detalles del solicitante:</p>
-      <ul>
-        <li>
-          <strong>Nombre:</strong> {requesterName}
-        </li>
-        <li>
-          <strong>Email:</strong> {requesterEmail}
-        </li>
-        <li>
-          <strong>Tipo de afiliación:</strong> {requesterAffiliationType}
-        </li>
-        <li>
-          <strong>Dependencia:</strong> {requesterDependency || "N/A"}
-        </li>
-      </ul>
-      <p>Detalles del evento:</p>
-      <ul>
-        <li>
-          <strong>Nombre del evento:</strong> {eventName}
-        </li>
-        <li>
-          <strong>Tipo de evento:</strong> {eventType}
-        </li>
-        <li>
-          <strong>Número de asistentes:</strong> {eventNumberAsistants}
-        </li>
-        <li>
-          <strong>Materiales:</strong> {eventMaterials.tv ? "TV, " : ""}
-          {eventMaterials.videobeam ? "Videobeam" : ""}
-        </li>
-        <li>
-          <strong>Comentarios:</strong> {eventComments}
-        </li>
-      </ul>
-      <p>Horarios:</p>
-      <ul>
-        <li>
-          <strong>Fecha de inicio:</strong> {startDate?.toLocaleDateString()}
-        </li>
-        <li>
-          <strong>Fecha de fin:</strong> {endDate?.toLocaleDateString()}
-        </li>
-        {schedules.map((schedule, index) => (
-          <li key={index}>
-            <strong>Días de la semana:</strong>{" "}
-            {schedule.dayOfWeek.map((day) => dayOfWeekMapping[day]).join(", ")}
-            <br />
-            <strong>Hora de inicio:</strong> {schedule.startTime}
-            <br />
-            <strong>Hora de fin:</strong> {schedule.endTime}
-            <br />
-            <strong>Recurrencia:</strong> {schedule.recurrence || "N/A"}
-          </li>
-        ))}
-      </ul>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Resumen de la reserva</h2>
+      <div className={styles.contentContainer}>
+        <div className={styles.dataContainer}>
+          <p className={styles.sectionTitle}>Detalles del evento</p>
+          <ul className={styles.list}>
+            <li className={styles.listItem}>
+              <strong>Nombre del evento:</strong> {eventName}
+            </li>
+            <li className={styles.listItem}>
+              <strong>Tipo de evento:</strong> {eventType}
+            </li>
+            <li className={styles.listItem}>
+              <strong>Número de asistentes:</strong> {eventNumberAsistants}
+            </li>
+            <li className={styles.listItem}>
+              <strong>Materiales:</strong> {eventMaterials.tv ? "TV, " : ""}
+              {eventMaterials.videobeam ? "Videobeam" : ""}
+            </li>
+            <li className={styles.listItem}>
+              <strong>Comentarios:</strong> {eventComments}
+            </li>
+          </ul>
+        </div>
+        <div className={styles.dataContainer}>
+          <p className={styles.sectionTitle}>Horarios</p>
+          <ul className={styles.list}>
+            <li className={styles.listItem}>
+              <strong>Fecha de inicio:</strong> {startDate?.toLocaleDateString()}
+            </li>
+            <li className={styles.listItem}>
+              <strong>Fecha de fin:</strong> {endDate?.toLocaleDateString()}
+            </li>
+            {schedules.map((schedule, index) => (
+              <li key={index} className={styles.listItem}>
+                <strong>Hora de inicio:</strong> {schedule.startTime}
+                <br />
+                <strong>Hora de fin:</strong> {schedule.endTime}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className={styles.finalMessage}>
+        <p>
+          Estimado {requesterName}, usted recibirá una confirmación de recibido a su correo {requesterEmail}. Muchas gracias.
+        </p>
+      </div>
     </div>
   );
 };
