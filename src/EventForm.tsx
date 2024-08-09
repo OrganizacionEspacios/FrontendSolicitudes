@@ -23,6 +23,23 @@ const EventForm = ({
   eventComments,
   updateFields,
 }: EventFormProps) => {
+  const handleNoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      updateFields({
+        eventMaterials: { tv: false, videobeam: false },
+      });
+    }
+  };
+
+  const handleMaterialChange = (
+    material: "tv" | "videobeam",
+    checked: boolean
+  ) => {
+    updateFields({
+      eventMaterials: { ...eventMaterials, [material]: checked },
+    });
+  };
+
   return (
     <FormWrapper title="Evento">
       <label>Nombre del evento</label>
@@ -71,11 +88,7 @@ const EventForm = ({
           <input
             type="checkbox"
             checked={eventMaterials.tv}
-            onChange={(e) =>
-              updateFields({
-                eventMaterials: { ...eventMaterials, tv: e.target.checked },
-              })
-            }
+            onChange={(e) => handleMaterialChange("tv", e.target.checked)}
           />
           TV
         </label>
@@ -84,15 +97,18 @@ const EventForm = ({
             type="checkbox"
             checked={eventMaterials.videobeam}
             onChange={(e) =>
-              updateFields({
-                eventMaterials: {
-                  ...eventMaterials,
-                  videobeam: e.target.checked,
-                },
-              })
+              handleMaterialChange("videobeam", e.target.checked)
             }
           />
           Videobeam
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={!eventMaterials.tv && !eventMaterials.videobeam}
+            onChange={handleNoneChange}
+          />
+          Ninguno
         </label>
       </div>
 
