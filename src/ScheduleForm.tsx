@@ -25,7 +25,7 @@ function ScheduleForm({
   schedules,
   updateFields,
 }: ScheduleFormProps) {
-  const [, setDayOfWeek] = useState<string>("");
+  const [dayOfWeek, setDayOfWeek] = useState<string>("");
 
   useEffect(() => {
     if (startDate) {
@@ -38,18 +38,20 @@ function ScheduleForm({
         "Friday",
         "Saturday",
       ];
-      const dayOfWeek = days[startDate.getDay()];
-      setDayOfWeek(dayOfWeek);
-      updateFields({
-        schedules: [
-          {
-            ...schedules[0],
-            dayOfWeek: [dayOfWeek],
-          },
-        ],
-      });
+      const newDayOfWeek = days[startDate.getDay()];
+      if (newDayOfWeek !== dayOfWeek) {
+        setDayOfWeek(newDayOfWeek);
+        updateFields({
+          schedules: [
+            {
+              ...schedules[0],
+              dayOfWeek: [newDayOfWeek],
+            },
+          ],
+        });
+      }
     }
-  }, [startDate, updateFields, schedules]);
+  }, [startDate, updateFields, schedules, dayOfWeek]);
 
   const handleDateChange = (date: Date | null) => {
     if (date) {
@@ -66,17 +68,17 @@ function ScheduleForm({
         "Friday",
         "Saturday",
       ];
-      const dayOfWeek = days[date.getDay()];
-      setDayOfWeek(dayOfWeek);
+      const newDayOfWeek = days[date.getDay()];
+      setDayOfWeek(newDayOfWeek);
       updateFields({
         schedules: [
           {
             ...schedules[0],
-            dayOfWeek: [dayOfWeek],
+            dayOfWeek: [newDayOfWeek],
           },
         ],
       });
-      console.log(`Selected date: ${date}, Day of the week: ${dayOfWeek}`);
+      console.log(`Selected date: ${date}, Day of the week: ${newDayOfWeek}`);
     } else {
       setDayOfWeek("");
       console.log("No date selected");
@@ -104,14 +106,17 @@ function ScheduleForm({
   return (
     <FormWrapper title="Horario de reserva">
       <DatePicker selected={startDate} onChange={handleDateChange} inline />
-      <div className="time-selector-container" style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        marginLeft: "1rem",
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
+      <div
+        className="time-selector-container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          marginLeft: "1rem",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <label>
           Hora de inicio:
           <input
