@@ -15,7 +15,7 @@ type FormData = {
 
   // EventForm fields
   eventName: string;
-  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
+ eventType: "Reunión" | "Clase" | "Parcial" | "Congreso" | "Otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
@@ -83,6 +83,13 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
       ? calculatePrice(eventNumberAsistants)
       : null;
 
+  const materials =
+    eventMaterials.tv || eventMaterials.videobeam
+      ? `${eventMaterials.tv ? "TV, " : ""}${
+          eventMaterials.videobeam ? "Videobeam" : ""
+        }`
+      : "Ninguno";
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Resumen de la reserva</h2>
@@ -100,12 +107,13 @@ const SummaryForm: React.FC<SummaryFormProps> = ({ data }) => {
               <strong>Número de asistentes:</strong> {eventNumberAsistants}
             </li>
             <li className={styles.listItem}>
-              <strong>Materiales:</strong> {eventMaterials.tv ? "TV, " : ""}
-              {eventMaterials.videobeam ? "Videobeam" : ""}
+              <strong>Materiales:</strong> {materials}
             </li>
-            <li className={styles.listItem}>
-              <strong>Comentarios:</strong> {eventComments}
-            </li>
+            {eventComments && (
+              <li className={styles.listItem}>
+                <strong>Comentarios:</strong> {eventComments}
+              </li>
+            )}
           </ul>
         </div>
         <div className={styles.dataContainer}>

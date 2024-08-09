@@ -2,7 +2,7 @@ import FormWrapper from "./FormWrapper";
 
 type EventData = {
   eventName: string;
-  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
+  eventType: "Reunión" | "Clase" | "Parcial" | "Congreso" | "Otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
@@ -40,19 +40,19 @@ const EventForm = ({
         onChange={(e) =>
           updateFields({
             eventType: e.target.value as
-              | "reunión"
-              | "clase"
-              | "parcial"
-              | "congreso"
-              | "otro",
+              | "Reunión"
+              | "Clase"
+              | "Parcial"
+              | "Congreso"
+              | "Otro",
           })
         }
       >
-        <option value="reunión">Reunión</option>
-        <option value="clase">Clase</option>
-        <option value="parcial">Parcial</option>
-        <option value="congreso">Congreso</option>
-        <option value="otro">Otro</option>
+        <option value="Reunión">Reunión</option>
+        <option value="Clase">Clase</option>
+        <option value="Parcial">Parcial</option>
+        <option value="Congreso">Congreso</option>
+        <option value="Otro">Otro</option>
       </select>
 
       <label>Número de asistentes</label>

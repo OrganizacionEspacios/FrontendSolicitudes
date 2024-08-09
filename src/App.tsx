@@ -21,7 +21,7 @@ type FormData = {
 
   // EventForm fields
   eventName: string;
-  eventType: "reunión" | "clase" | "parcial" | "congreso" | "otro";
+  eventType: "Reunión" | "Clase" | "Parcial" | "Congreso" | "Otro";
   eventNumberAsistants: number;
   eventMaterials: {
     tv: boolean;
@@ -49,7 +49,7 @@ const INITIAL_DATA: FormData = {
   requesterDependency: null, // Allow null
 
   eventName: "",
-  eventType: "reunión", // Set to one of the new values
+  eventType: "Reunión", // Set to one of the new values
   eventNumberAsistants: 0,
   eventMaterials: {
     tv: false,
