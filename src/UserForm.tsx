@@ -29,10 +29,10 @@ const UserForm = ({
   const validateEmail = (email: string, affiliationType: string) => {
     if (
       affiliationType !== "externoUN" &&
-      !email.endsWith("@organizationedu.com")
+      !email.endsWith("@unal.edu.co")
     ) {
       setErrorMessage(
-        "El correo debe terminar con '@organizationedu.com' para los tipos de vinculación diferentes a 'externoUN'."
+        "El correo debe terminar con '@unal.edu.co' para los tipos de vinculación diferentes a 'externoUN'."
       );
       return false;
     }
