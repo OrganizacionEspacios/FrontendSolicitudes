@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import FormWrapper from "./FormWrapper";
 
 type UserData = {
@@ -23,38 +24,56 @@ const UserForm = ({
   requesterDependency,
   updateFields,
 }: UserFormProps) => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const validateEmail = (email: string, affiliationType: string) => {
+    if (
+      affiliationType !== "externoUN" &&
+      !email.endsWith("@organizationedu.com")
+    ) {
+      setErrorMessage(
+        "El correo debe terminar con '@organizationedu.com' para los tipos de vinculación diferentes a 'externoUN'."
+      );
+      return false;
+    }
+    setErrorMessage(null);
+    return true;
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const email = e.target.value;
+    updateFields({ requesterEmail: email });
+    validateEmail(email, requesterAffiliationType);
+  };
+
+  const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value;
+    const isValid = validateEmail(email, requesterAffiliationType);
+    e.target.setCustomValidity(isValid ? "" : errorMessage || "");
+    e.target.reportValidity();
+  };
+
+  const handleAffiliationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const affiliationType = e.target
+      .value as UserData["requesterAffiliationType"];
+    updateFields({ requesterAffiliationType: affiliationType });
+    const isValid = validateEmail(requesterEmail, affiliationType);
+    const emailInput = document.querySelector<HTMLInputElement>(
+      'input[type="email"]'
+    );
+    if (emailInput) {
+      emailInput.setCustomValidity(isValid ? "" : errorMessage || "");
+      emailInput.reportValidity();
+    }
+  };
+
   return (
     <FormWrapper title="Detalles de usuario">
-      <label>Nombre del solicitante</label>
-      <input
-        autoFocus
-        required
-        type="text"
-        value={requesterName}
-        onChange={(e) => updateFields({ requesterName: e.target.value })}
-      />
-      <label>Email del solicitante</label>
-      <input
-        required
-        type="email"
-        value={requesterEmail}
-        onChange={(e) => updateFields({ requesterEmail: e.target.value })}
-      />
       <label>Tipo de vinculación</label>
       <select
         required
         value={requesterAffiliationType}
-        onChange={(e) =>
-          updateFields({
-            requesterAffiliationType: e.target.value as
-              | "estudiante"
-              | "docente"
-              | "contratista"
-              | "funcionario/administrativo"
-              | "externoUN"
-              | undefined,
-          })
-        }
+        onChange={handleAffiliationChange}
       >
         <option value="">Seleccione una opción</option>
         <option value="estudiante">Estudiante</option>
@@ -65,6 +84,24 @@ const UserForm = ({
         </option>
         <option value="externoUN">Externo UN</option>
       </select>
+      <label>Email del solicitante</label>
+      <input
+        required
+        type="email"
+        value={requesterEmail}
+        onChange={handleEmailChange}
+        onBlur={handleEmailBlur}
+        onInput={(e) => e.currentTarget.setCustomValidity("")}
+        style={{ borderColor: errorMessage ? "red" : "initial" }}
+      />
+      <label>Nombre del solicitante</label>
+      <input
+        autoFocus
+        required
+        type="text"
+        value={requesterName}
+        onChange={(e) => updateFields({ requesterName: e.target.value })}
+      />
       <label>Dependencia</label>
       <input
         type="text"
